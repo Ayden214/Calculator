@@ -1,51 +1,50 @@
-#Start a loop and ask for input on what kind of operation to perform
+#Start a loop and ask for input, check if input is valid, and ask if the loop should end
 B = True
 while B:
-    operation = input("Do you want to add (+), subtract (-), multiply (*), or divide (/)?\n")
-    #Check if the input is a valid operation symbol and execute. If not restart the loop.
-    if operation == '+': 
-        #Take the two numbers as input for the operation, add them, and print the answer
-        x = input("Enter your first number:\n")
-        y = input("Enter your second number:\n")
-        ans = int(x) + int(y)
-        print("The addition of your numbers is " + str(ans))
-        #Ask if user wants to restart or quit out
-        restart = input("Do you want to restart? (y/n)\n")
-        if restart != 'y':
-            B = False
-            
-    elif operation == '-': 
-        #Take the two numbers as input for the operation, subtract them, and print the answer
-        x = input("Enter your first number:\n")
-        y = input("Enter your second number:\n")
-        ans = int(x) - int(y)
-        print("The subtraction of your numbers is " + str(ans))
-        #Ask if user wants to restart or quit out
-        restart = input("Do you want to restart? (y/n)\n")
-        if restart != 'y':
-            B = False
-            
-    elif operation == '*': 
-        #Take the two numbers as input for the operation, multiply them, and print the answer
-        x = input("Enter your first number:\n")
-        y = input("Enter your second number:\n")
-        ans = int(x) * int(y)
-        print("The multiplication of your numbers is " + str(ans))
-        #Ask if user wants to restart or quit out
-        restart = input("Do you want to restart? (y/n)\n")
-        if restart != 'y':
-            B = False
-            
-    elif operation == '/':
-        #Take the two numbers as input for the operation, divide them, and print the answer
-        x = input("Enter your first number:\n")
-        y = input("Enter your second number:\n")
-        ans = float(x) / float(y)
-        print("The division of your numbers is " + str(ans))
-        #Ask if user wants to restart or quit out
-        restart = input("Do you want to restart? (y/n)\n")
-        if restart != 'y':
-            B = False
-        
-    else:
+    #Make boolean to check if operations need to be skipped
+    good = True
+    #Take in two numbers and the operator as input and print answer
+    x = input("Enter your first number:\n")
+    #This checks if the first input is a valid number, if not, skip to end
+    try:
+        type(int(x))
+    except:
         print("Not valid input.")
+        good = False
+        
+    if good:    
+        operator = input("Do you want to add (+), subtract (-), multiply (*), or divide (/)?\n")
+        
+        y = input("Enter your second number:\n")
+        #This checks if the third input is a valid number, if not, skip to end
+        try:
+            type(int(y))
+        except:
+            print("Not valid input.")
+            good = False
+        
+        if good:    
+            #this checks if the second input is a valid operator and performs the operation
+            if operator == '+': 
+                ans = int(x) + int(y)
+                
+            elif operator == '-': 
+                ans = int(x) - int(y)
+                    
+            elif operator == '*':
+                ans = int(x) * int(y)
+                    
+            elif operator == '/':
+                ans = float(x) / float(y)
+                
+            else:
+                print("The operator was incorrect.")
+                
+            try:
+                print("Your answer is: " + str(ans))
+            except:
+                print("Inputs were invalid.") 
+        
+    restart = input("Do you want to restart? (y/n)\n")
+    if restart != 'y':
+       B = False
