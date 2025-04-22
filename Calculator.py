@@ -14,7 +14,12 @@ while B:
         
     if good:    
         operator = input("Do you want to add (+), subtract (-), multiply (*), or divide (/)?\n")
-        
+        #This checks if the second input is an operator
+        if(operator != '+' and operator != '-' and operator != '/' and operator != '*'):
+            print("Not valid input")
+            good = False
+    
+    if good:    
         y = input("Enter your second number:\n")
         #This checks if the third input is a valid number, if not, skip to end
         try:
@@ -23,27 +28,24 @@ while B:
             print("Not valid input.")
             good = False
         
-        if good:    
-            #this checks if the second input is a valid operator and performs the operation
-            if operator == '+': 
-                ans = int(x) + int(y)
+    if good:    
+        #this performs the operation based on the inputs
+        if operator == '+': 
+            ans = int(x) + int(y)
+            
+        elif operator == '-': 
+            ans = int(x) - int(y)
                 
-            elif operator == '-': 
-                ans = int(x) - int(y)
-                    
-            elif operator == '*':
-                ans = int(x) * int(y)
-                    
-            elif operator == '/':
-                ans = float(x) / float(y)
+        elif operator == '*':
+            ans = int(x) * int(y)
                 
-            else:
-                print("The operator was incorrect.")
-                
-            try:
-                print("Your answer is: " + str(ans))
-            except:
-                print("Inputs were invalid.") 
+        elif operator == '/':
+            ans = float(x) / float(y)
+            
+        try:
+            print("Your answer is: " + str(ans))
+        except:
+            print("Error.") 
         
     restart = input("Do you want to restart? (y/n)\n")
     if restart != 'y':
